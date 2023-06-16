@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Student | eRegistrar</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<h1>Edit Student</h1>
+<nav th:replace="~{fragments/navbar :: nav}"></nav>
+
+<div class="p-3">
+  <form method="post" action="/students/update" th:object="${student}">
+    <input type="hidden" name="studentId" th:value="${student.studentId}" />
+    <label>Student Number:</label><br />
+    <input type="text" name="studentNumber" required th:value="${student.studentNumber}" /><br />
+    <span th:if="${#fields.hasErrors('studentNumber')}" th:errors="*{studentNumber}" class="text-danger"></span><br />
+
+    <label>First Name:</label><br />
+    <input type="text" name="firstName" required th:value="${student.firstName}" /><br />
+    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"></span><br />
+
+    <label>Middle Name:</label><br />
+    <input type="text" name="middleName" th:value="${student.middleName}" /><br />
+    <span th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}" class="text-danger"></span><br />
+
+    <label>Last Name:</label><br />
+    <input type="text" name="lastName" required th:value="${student.lastName}" /><br />
+    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></span><br />
+
+    <label>CGPA:</label><br />
+    <input type="number" step=".01" name="cgpa" required th:value="${student.cgpa}" /><br />
+    <span th:if="${#fields.hasErrors('cgpa')}" th:errors="*{cgpa}" class="text-danger"></span><br />
+
+    <label>Enrollment Date:</label><br />
+    <input type="date" name="enrollmentDate" required th:value="${student.enrollmentDate}" /><br />
+    <span th:if="${#fields.hasErrors('enrollmentDate')}" th:errors="*{enrollmentDate}" class="text-danger"></span><br />
+
+    <label>Is International:</label><br />
+    <select name="isInternational" required th:field="${student.isInternational}"><br />
+      <option value="">- Choose option -</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select><br />
+    <span th:if="${#fields.hasErrors('isInternational')}" th:errors="*{isInternational}" class="text-danger"></span><br />
+    <input type="submit" class="btn btn-primary mt-3" value="Register" />
+  </form>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
